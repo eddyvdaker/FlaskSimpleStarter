@@ -4,6 +4,8 @@ from flask.wrappers import Response
 from typing import Optional
 from werkzeug.http import HTTP_STATUS_CODES
 
+from src.database import rollback_db
+
 bp = Blueprint('errors', __name__)
 
 ## Generic error handling functions for creating error responses
@@ -68,4 +70,5 @@ def not_found(error) -> Response:
 @bp.app_errorhandler(500)
 def internal_server_error(error) -> Response:
     """Errorhandler for 500 - Internal Server error."""
+    rollback_db()
     return error_response(500)

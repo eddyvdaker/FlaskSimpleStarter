@@ -1,5 +1,5 @@
 ### Projects specific ###
-
+*.db
 
 
 # Created by https://www.gitignore.io/api/flask,python,virtualenv,visualstudiocode

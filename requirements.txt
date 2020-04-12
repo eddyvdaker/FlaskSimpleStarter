@@ -1,4 +1,6 @@
 Flask
 Flask-Bootstrap
+Flask-Login
+Flask-SQLAlchemy
 python-dotenv
 pytest

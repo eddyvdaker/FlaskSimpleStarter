@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-  {% if title %}{{ title }} - {% endif %}APP_TITLE
+  {% if title %}{{ title }} - {% endif %}{{ config['APP_NAME'] }}
 {% endblock %}
 
 {% block navbar %}

@@ -1,8 +1,8 @@
 from flask import Flask
 
-from src.blueprints import main
+from src.blueprints import main, users
 from src.errors import bp as errors_bp
-from src.extensions import boostrap
+from src.extensions import boostrap, db, login
 
 
 def create_app(config_object: str = 'src.settings') -> Flask:
@@ -18,16 +18,19 @@ def create_app(config_object: str = 'src.settings') -> Flask:
 
 def register_extensions(app):
     boostrap.init_app(app)
+    db.init_app(app)
+    login.init_app(app)
 
 
 def register_blueprints(app):
     app.register_blueprint(errors_bp)
     app.register_blueprint(main.bp)
+    app.register_blueprint(users.bp)
 
 
 def register_shellcontext(app):
     def shell_context():
         return {
-
+            'db': db
         }
     app.shell_context_processor(shell_context)

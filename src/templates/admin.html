@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+  <h1>Admin Panel</h1>
+  <ul>
+    <li><a href="{{ url_for('users.overview_users') }}">Users</a></li>
+  </ul>
+{% endblock %}

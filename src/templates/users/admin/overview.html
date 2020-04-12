@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+  <h1>Admin: User Overview</h1>
+  <a href="{{ url_for('users.new_user') }}">Add User</a>
+  <hr>
+  <table class="table table-striped">
+    <thead>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th></th>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.admin }}</td>
+          <td>
+            <a href="{{ url_for('users.reset_password', user_id=user.id) }}">Reset Password</a> - 
+            <a href="{{ url_for('users.edit_user', user_id=user.id) }}">Edit</a> - 
+            <a href="{{ url_for('users.delete_user', user_id=user.id) }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
