@@ -31,6 +31,7 @@ def register_blueprints(app):
 def register_shellcontext(app):
     def shell_context():
         return {
-            'db': db
+            'db': db,
+            'User': users.models.User
         }
     app.shell_context_processor(shell_context)
