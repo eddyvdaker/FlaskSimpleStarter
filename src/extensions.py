@@ -5,3 +5,4 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 boostrap = Bootstrap()
 login = LoginManager()
+login.login_view = 'users.login'
