@@ -2,7 +2,8 @@ from flask import Flask
 
 from src.blueprints import main, users
 from src.errors import bp as errors_bp
-from src.extensions import boostrap, db, login
+from src.extensions import bootstrap, db, login
+
 
 
 def create_app(config_object: str = 'src.settings') -> Flask:
@@ -17,7 +18,7 @@ def create_app(config_object: str = 'src.settings') -> Flask:
 
 
 def register_extensions(app):
-    boostrap.init_app(app)
+    bootstrap.init_app(app)
     db.init_app(app)
     login.init_app(app)
 

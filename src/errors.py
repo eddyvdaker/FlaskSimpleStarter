@@ -57,13 +57,13 @@ def bad_request(error) -> Response:
 
 @bp.app_errorhandler(403)
 def forbidden(error) -> Response:
-    """Errorhanlder for 403 - Forbidden error."""
+    """Errorhandler for 403 - Forbidden error."""
     return error_response(403)
 
 
 @bp.app_errorhandler(404)
 def not_found(error) -> Response:
-    """Errorhanlder for 404 - Not Found error."""
+    """Errorhandler for 404 - Not Found error."""
     return error_response(404)
 
 

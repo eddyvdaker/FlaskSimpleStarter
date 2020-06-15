@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 db = SQLAlchemy()
-boostrap = Bootstrap()
+bootstrap = Bootstrap()
 login = LoginManager()
 login.login_view = 'users.login'
+
