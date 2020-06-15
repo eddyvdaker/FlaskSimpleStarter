@@ -1,3 +1,3 @@
 from flask_bootstrap import Bootstrap
 
-boostrap = Bootstrap()
+bootstrap = Bootstrap()

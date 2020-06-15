@@ -2,7 +2,7 @@ from flask import Flask
 
 from src.blueprints import main
 from src.errors import bp as errors_bp
-from src.extensions import boostrap
+from src.extensions import bootstrap
 
 
 def create_app(config_object: str = 'src.settings') -> Flask:
@@ -17,7 +17,7 @@ def create_app(config_object: str = 'src.settings') -> Flask:
 
 
 def register_extensions(app):
-    boostrap.init_app(app)
+    bootstrap.init_app(app)
 
 
 def register_blueprints(app):
