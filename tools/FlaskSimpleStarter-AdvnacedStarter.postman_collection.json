@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "8624e0a4-9286-446d-ab5c-b34c91ad61e3",
+		"name": "FlaskSimpleStarter-AdvnacedStarter",
+		"description": "This is a template Postman collection for the FlaskSimpleStarter AdvancedStarter project template.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Request API Key",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{email}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/api/v1.0/request-key",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1.0",
+								"request-key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test API Authentication",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/api/v1.0/test-auth",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1.0",
+								"test-auth"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d78f2562-efcc-47a3-8398-56be87fcce8a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "72fa6c14-1ca4-4c87-b3d8-37d815a68586",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e963c516-0760-4460-a301-4daa785146b4",
+			"key": "email",
+			"value": "admin@example.com"
+		},
+		{
+			"id": "7552b1ec-b0b1-4272-91af-b2775f27a02d",
+			"key": "password",
+			"value": "admin"
+		},
+		{
+			"id": "f22ed4cc-3a39-4ed2-bdfa-cb4095eb8437",
+			"key": "host",
+			"value": "localhost"
+		},
+		{
+			"id": "a610cc23-c0d9-49da-b696-58050097b447",
+			"key": "port",
+			"value": "5000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
