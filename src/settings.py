@@ -12,7 +12,7 @@ DEV = os.environ.get('DEVELOPMENT') or False
 
 ## DB Settings
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-    'sqlite:///' + os.path.join(basedir, '../app.db')
+    'sqlite:///' + os.path.join(basedir, '../data/app.db')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 ## Auth Settings
