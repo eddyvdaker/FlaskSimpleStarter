@@ -4,10 +4,11 @@ from datetime import datetime, timedelta
 from flask_login import UserMixin
 from typing import Dict
 from secrets import token_urlsafe
+from sqlalchemy import Integer, String, Column, Boolean, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from src.database import ForeignKey, Model, Column, Integer, String, Boolean, \
-    DateTime, relationship
+from src.database import Model
 from src.extensions import login
 
 
@@ -83,7 +84,7 @@ class User(Model, UserMixin):
         :param key: The key to check
         :return: Self if the API key is valid, nothing otherwise    
         """
-        api_key = ApiKey.query.filter_by(key=key).first()
+        api_key = ApiKey.query().filter_by(key=key).first()
         if api_key:
             if datetime.utcnow() < api_key.expiration:
                 return api_key
@@ -111,7 +112,7 @@ class ApiKey(Model):
         encoded_key = key.encode('utf-8')
         b64_key = b64encode(encoded_key)
         b64_key_str = b64_key.decode('utf-8')
-        while ApiKey.query.filter_by(key=b64_key_str).first():
+        while ApiKey.query().filter_by(key=b64_key_str).first():
             encoded_key = key.encode('utf-8')
             b64_key = b64encode(encoded_key)
             b64_key_str = b64_key.decode('utf-8')
@@ -122,7 +123,7 @@ class ApiKey(Model):
     @classmethod
     def get_by_key(cls, key):
         """Request an API key object from a key."""
-        return cls.query.filter_by(key=key).first()
+        return cls.query().filter_by(key=key).first()
 
     def update_key_expiration(self, expires_in):
         """Update the expiration time.

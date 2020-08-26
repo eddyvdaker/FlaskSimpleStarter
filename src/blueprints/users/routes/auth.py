@@ -12,7 +12,7 @@ from src.blueprints.users.models import User
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query().filter_by(email=form.email.data).first()
         if not user or not user.check_password(form.password.data):
             flash('Wrong username or password')
             return redirect(url_for('users.login'))

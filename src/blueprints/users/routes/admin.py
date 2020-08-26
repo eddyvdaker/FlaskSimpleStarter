@@ -13,7 +13,7 @@ from src.blueprints.users.utils import admin_required
 @bp.route('/admin/users')
 @admin_required
 def overview_users():
-    users = User.query.all()
+    users = User.query().all()
     return render_template('users/admin/overview.html', users=users)
 
 

@@ -1,9 +1,9 @@
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
-db = SQLAlchemy()
+from src.database import db
+
 migrate = Migrate()
 bootstrap = Bootstrap()
 login = LoginManager()

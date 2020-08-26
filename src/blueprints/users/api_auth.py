@@ -12,7 +12,7 @@ token_auth = HTTPTokenAuth(scheme='Bearer')
 
 @basic_auth.verify_password
 def verify_password(email, password):
-    user = User.query.filter_by(email=email).first()
+    user = User.query().filter_by(email=email).first()
     if user and user.check_password(password):
         return user
 

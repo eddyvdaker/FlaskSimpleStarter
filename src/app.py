@@ -21,7 +21,6 @@ def create_app(config_object: str = 'src.settings') -> Flask:
     register_shellcontext(app)
     if not app.config['TESTING']:
         register_logging(app)
-    app.logger.error('Test')
     return app
 
 
