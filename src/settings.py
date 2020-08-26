@@ -14,3 +14,6 @@ DEV = os.environ.get('DEVELOPMENT') or False
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
     'sqlite:///' + os.path.join(basedir, '../app.db')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+## Auth Settings
+EXPIRATION_TIME = os.environ.get('EXPIRATION_TIME') or 2629800

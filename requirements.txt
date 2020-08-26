@@ -3,5 +3,7 @@ Flask-Bootstrap
 Flask-Login
 Flask-SQLAlchemy
 Flask-WTF
+Flask-Migrate
+Flask-Httpauth
+email_validator
 python-dotenv
-pytest
