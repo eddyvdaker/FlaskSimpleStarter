@@ -10,5 +10,11 @@ app = create_app()
 
 
 @cli.command()
+def drop_db():
+    db.drop_all()
+    db.session.commit()
+
+
+@cli.command()
 def seed_db():
     User.create(email='admin@example.com', password='admin', admin=True)
