@@ -1,8 +1,11 @@
+from types import SimpleNamespace
 from flask import has_app_context
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
+
+from src.settings import SQLALCHEMY_DATABASE_URI
 
 metadata = MetaData()
 Base = declarative_base(metadata=metadata)
@@ -13,6 +16,10 @@ Base = declarative_base(metadata=metadata)
 # file. The db object is imported in the extensions.py file to provide
 # a unified method of accessing the Flask extensions.
 db = SQLAlchemy(metadata=metadata)
+engine = create_engine(SQLALCHEMY_DATABASE_URI)
+session = Session(engine)
+plain_db = SimpleNamespace()
+plain_db.session = session
 
 
 class CRUDMixin(object):
@@ -34,10 +41,6 @@ class CRUDMixin(object):
     def create(cls, **kwargs):
         instance = cls(**kwargs)
         return instance.save()
-
-    @classmethod
-    def get_model_class(cls):
-        return cls
     
     def update(self, **kwargs):
         for attr, value in kwargs.items():
@@ -45,11 +48,15 @@ class CRUDMixin(object):
         return self.save()
 
     def save(self):
+        if not has_app_context():
+            db.session = session
         db.session.add(self)
         db.session.commit()
         return self
 
     def delete(self):
+        if not has_app_context():
+            db.session = session
         db.session.delete(self)
         db.session.commit()
 
@@ -68,12 +75,9 @@ class Model(Base, CRUDMixin):
 
     @classmethod
     def query(cls):
-        if has_app_context():
-            return db.session.query(cls)
-        from src.settings import SQLALCHEMY_DATABASE_URI
-        engine = create_engine(SQLALCHEMY_DATABASE_URI)
-        session = Session(engine)
-        return session.query(cls)
+        if not has_app_context():
+            db.session = session
+        return db.session.query(cls)
 
 
 def rollback_db():
